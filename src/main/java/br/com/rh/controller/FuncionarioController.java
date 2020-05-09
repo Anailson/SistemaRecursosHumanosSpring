@@ -74,7 +74,6 @@ public class FuncionarioController {
 		
 		return modelAndView;
 		
-		
 	}
 	
 	
@@ -83,12 +82,12 @@ public class FuncionarioController {
 	public ModelAndView excluir(@PathVariable("idfuncionario") Long idfuncionario){
 		
 		
-		funcionarioRepository.deleteById(idfuncionario);
+		funcionarioRepository.deleteById(idfuncionario); //EXCLUINDO POR ID
 		
 		
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofuncionario");
-		modelAndView.addObject("funcionarios", funcionarioRepository.findAll());
-		modelAndView.addObject("funcionarioobj", new Funcionario());
+		modelAndView.addObject("funcionarios", funcionarioRepository.findAll());//LISTA TODOS AO EXCLUIR
+		modelAndView.addObject("funcionarioobj", new Funcionario()); //CRIANDO UM NOVO OBJETO
 	   
 		return modelAndView;
 		
