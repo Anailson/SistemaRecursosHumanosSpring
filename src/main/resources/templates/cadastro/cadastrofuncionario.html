@@ -11,7 +11,11 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
-
+<!-- Adicionando JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Cadastro Colaboradores</title>
@@ -83,12 +87,12 @@
 	
 	<div class="input-field col s3">
 		<label for="dtNascimento" class="active">Data Nascimento:</label>
-		<input name="dtNascimento" th:field="*{dtNascimento}"/>
+		<input type="date" id="dtNascimento" name="dtNascimento" th:field="*{dtNascimento}" placeholder="Data Nasc."/>
 	</div>
 	
 	<div class="input-field col s3">
 		<label for="dataContratacao" class="active">Data Da Contratação:</label>
-		<input name="dataContratacao" th:field="*{dataContratacao}"/>
+		<input  type="date" id="dataContratacao" name="dataContratacao" th:field="*{dataContratacao}"/>
 	</div>
 </div>		
 	
@@ -112,6 +116,21 @@
 </table>
 
 
+<script type="text/javascript">
+ 
+$(document).ready(function() {
+	
+	//Colocando no JS codigo para executa o calendar
+	$('#dataNascimento').datepicker({
+				showOthermonths:true,
+				format: 'yyyy-mm-dd'
+				
+				
+	});
+}
+
+
+</script>
 
 
 

@@ -1,11 +1,16 @@
 package br.com.rh.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -36,9 +41,14 @@ public class Funcionario implements Serializable {
 	
 	private String numeroCtps;
 	
-	private String dtNascimento;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date dtNascimento;
 	
-	private String dataContratacao;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date dataContratacao;
 	
 	
 	
@@ -123,19 +133,23 @@ public class Funcionario implements Serializable {
 		this.numeroCtps = numeroCtps;
 	}
 
-	public String getDtNascimento() {
+	
+
+	public Date getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(String dtNascimento) {
+	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 
-	public String getDataContratacao() {
+	
+
+	public Date getDataContratacao() {
 		return dataContratacao;
 	}
 
-	public void setDataContratacao(String dataContratacao) {
+	public void setDataContratacao(Date dataContratacao) {
 		this.dataContratacao = dataContratacao;
 	}
 
