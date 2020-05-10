@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,6 @@ public class Funcionario implements Serializable {
 	
 	private String sexo;
 	
-	private String escolaridade; //
 	
 	private String telefone;
 	
@@ -49,6 +50,20 @@ public class Funcionario implements Serializable {
 	
 	private String estadoCivil;
 	
+	
+	//1 FUNCIONARIO TEM UMA ESCOLARIDADE  - TEM QUE CHAMAR O ENUM
+	@Enumerated(EnumType.STRING)
+	private Escolaridade escolaridade;
+	
+	
+	
+	public void setEscolaridade(Escolaridade escolaridade) {
+		this.escolaridade = escolaridade;
+	}
+	
+	public Escolaridade getEscolaridade() {
+		return escolaridade;
+	}
 	
 
 	public Long getId() {
@@ -91,13 +106,7 @@ public class Funcionario implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public String getEscolaridade() {
-		return escolaridade;
-	}
-
-	public void setEscolaridade(String escolaridade) {
-		this.escolaridade = escolaridade;
-	}
+	
 
 	public String getTelefone() {
 		return telefone;

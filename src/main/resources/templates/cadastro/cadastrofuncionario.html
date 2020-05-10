@@ -97,12 +97,15 @@
 		<input name="numeroCtps" th:field="*{numeroCtps}"/>
 	</div>
 	
-	 <div class="input-field col s3">
-		<label for="escolaridade" class="active">escolaridade:</label>
-		<input name="escolaridade" th:field="*{escolaridade}"/>
+	<!-- chamando o enum -->
+	<div class="input-field col s3">
+		<label for="escolaridade" class="active">Escolaridade:</label>
+		<select class="browser-default" th:field="*{escolaridade}" id="escolaridade">
+		  <option th:each = "e : ${T(br.com.rh.model.Escolaridade).values()}" th:value="${e}" th:text="${e.nome}" />
+		</select>
+	
 	</div>
-	
-	
+		
 	<div class="input-field col s3">
 		<label for="dtNascimento" class="active">Data Nascimento:</label>
 		<input type="date" id="dtNascimento" name="dtNascimento" th:field="*{dtNascimento}" placeholder="Data Nasc."/>
