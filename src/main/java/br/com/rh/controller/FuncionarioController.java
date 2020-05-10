@@ -46,7 +46,7 @@ public class FuncionarioController {
 	
 	
 	/*------------------METODO DE LISTA FUNCIONARIOS-------------------------*/
-	@RequestMapping(method = RequestMethod.GET, value = "/listafuncionarios")
+	@RequestMapping(method = RequestMethod.GET, value = "**/listafuncionarios")
 	public ModelAndView funcionarios() {
 		ModelAndView andView = new ModelAndView("cadastro/cadastrofuncionario");
 
