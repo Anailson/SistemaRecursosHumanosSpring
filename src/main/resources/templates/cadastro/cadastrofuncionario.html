@@ -11,13 +11,13 @@
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
-<!-- Adicionando JQuery -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+   <!-- Adicionando JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous">
-    </script>
+            crossorigin="anonymous"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 
 <!-- COLOCANDO O STYLE PARA APLICAR NA CLASSE STRIPED -->
@@ -41,8 +41,8 @@ color:white;
 <h2> DADOS DO FUNCIONÁRIO</h2>
 
 
-<div class="row">
-<form id="formfuncionario" action="salvarfuncionario" method="post" th:object="${funcionarioobj}" class="col s12" >
+<div class="row"> <!-- DIV ROM PRINCIPAL -->
+<form id="formfuncionario" action="salvarfuncionario" method="post" th:object="${funcionarioobj}" class="col s12" > 
 	
 <div class="row">
 	<div class="input-field col s3">
@@ -129,21 +129,58 @@ color:white;
 	</div>
 	
 	
+</div>	
+
+<!-- VIA CEP -->
+
+<div class="row">
+	<div class="input-field col s3">
+		<label for="cep" class="active">CEP:</label>
+		<input name="cep" th:field="*{cep}"/>
+	</div>
+	
+	<div class="input-field col s3">
+		<label for="rua" class="active">Rua:</label>
+		<input name="rua" th:field="*{rua}"/>
+	</div>
+	
+	<div class="input-field col s3">
+		<label for="bairro" class="active">Bairro:</label>
+		<input name="bairro" th:field="*{bairro}"/>
+	</div>
+
+	<div class="input-field col s3">
+		<label for="cidade" class="active">Cidade:</label>
+		<input name="cidade" th:field="*{cidade}"/>
+	</div>
 </div>		
 	
-	<div class="row">
-	<div class="input-fiel col s6">
-	<input class="btn waves-effect waves-light btn" type="submit" value="salvar">
-	
+<div class="row">	
+	<div class="input-field col s3">
+		<label for="uf" class="active">Estado:</label>
+		<input name="uf" th:field="*{uf}"/>
 	</div>
+	
+	<div class="input-field col s3">
+		<label for="ibge" class="active">IBGE:</label>
+		<input name="ibge" th:field="*{ibge}"/>
 	</div>
-	
-	
-	
-	
-	
-</form>
 </div>
+
+
+
+
+<div class="row">
+   <div class="input-fiel col s6">
+		<input class="btn waves-effect waves-light btn" type="submit" value="salvar">
+   </div>
+</div>
+	
+	
+
+</form>
+</div><!-- DIV ROM PRINCIPAL -->
+
 
 <a href="/listafuncionarios">Lista de Funcionáros</a>
 
@@ -173,7 +210,77 @@ $(document).ready(function() {
 }
 
 
+
+
 </script>
+<!-- Adicionando Javascript -->
+    <script type="text/javascript" >
+
+        $(document).ready(function() {
+
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+                $("#ibge").val("");
+            }
+            
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");
+                        $("#ibge").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#ibge").val(dados.ibge);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+
+    </script>
 
 
 
