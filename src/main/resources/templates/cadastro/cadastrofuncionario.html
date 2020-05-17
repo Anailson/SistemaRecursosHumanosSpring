@@ -18,14 +18,31 @@
     </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<!-- COLOCANDO O STYLE PARA APLICAR NA CLASSE STRIPED -->
+<style type="text/css">
+	table.striped>tbody>tr:nth-child(odd){
+	 background-color:#f0f4c3;
+	}
+	
+form input[type=submit]{  /*PEGAR TODOS OS INPUT E COLOCA A COR BRANCO*/
+color:white;
+}	
+</style>
+
+
+
 <title>Cadastro Colaboradores</title>
 </head>
+
 <body>
 
-<h2>Cadastro de Funcionários</h2>
+<h2> DADOS DO FUNCIONÁRIO</h2>
+
 
 <div class="row">
-<form action="salvarfuncionario" method="post" th:object="${funcionarioobj}" class="col s12">
+<form id="formfuncionario" action="salvarfuncionario" method="post" th:object="${funcionarioobj}" class="col s12" >
 	
 <div class="row">
 	<div class="input-field col s3">
@@ -114,15 +131,23 @@
 	
 </div>		
 	
+	<div class="row">
+	<div class="input-fiel col s6">
+	<input class="btn waves-effect waves-light btn" type="submit" value="salvar">
 	
-	<input class="btn waves-effect waves-light" type="submit" value="salvar">
+	</div>
+	</div>
+	
+	
+	
+	
 	
 </form>
 </div>
 
 <a href="/listafuncionarios">Lista de Funcionáros</a>
 
-<table>
+<table class="striped">  
 	<tr th:each = "funcionario :${funcionarios}">
 		<td th:text = "${funcionario.id}"></td>
 		<td th:text = "${funcionario.nome}"></td>
