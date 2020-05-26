@@ -181,15 +181,24 @@ color:white;
 </form>
 </div><!-- DIV ROM PRINCIPAL -->
 
+<form action="pesquisafuncionario" method="post">
+	<label>Pesquisa por Nome:</label>
+	<input name="nomepesquisa">
+	<input class="btn waves-effect waves-light btn" type="submit" value="Buscar">
 
+</form>
+
+
+<br/>
 <a href="/listafuncionarios">Lista de Funcionáros</a>
+<br/>
 
 <table class="striped">  
 	<tr th:each = "funcionario :${funcionarios}">
-		<td th:text = "${funcionario.id}"></td>
-		<td th:text = "${funcionario.nome}"></td>
-		<td th:text = "${funcionario.sobrenome}"></td>
-		<td th:text = "${funcionario.idade}"></td>
+		<td th:text = "${funcionario.id}">ID</td>
+		<td th:text = "${funcionario.nome}">Nome</td>
+		<td th:text = "${funcionario.sobrenome}">Sobrenome</td>
+		<td th:text = "${funcionario.idade}">Idade</td>
 		<td><a th:href="@{/editarfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Editar</a></td>
 		<td><a th:href="@{/excluirfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Excluir</a></td>
 	</tr>
