@@ -194,11 +194,23 @@ color:white;
 <br/>
 
 <table class="striped">  
+
+<thead ><!-- CRIANDO COLUNAS PRA A TABELA -->
+ 	<tr > <!-- LINHA -->
+	 	<th>ID</th> <!-- COLUNA -->
+	 	<th>Nome</th>
+	 	<th>Sobrenome</th>
+	 	<th>Idade</th>
+	 	<th>Editar</th>
+	 	<th>Excluir</th>
+ </tr>
+</thead >
+
 	<tr th:each = "funcionario :${funcionarios}">
-		<td th:text = "${funcionario.id}">ID</td>
-		<td th:text = "${funcionario.nome}">Nome</td>
-		<td th:text = "${funcionario.sobrenome}">Sobrenome</td>
-		<td th:text = "${funcionario.idade}">Idade</td>
+		<td th:text = "${funcionario.id}"></td>
+		<td th:text = "${funcionario.nome}"></td>
+		<td th:text = "${funcionario.sobrenome}"></td>
+		<td th:text = "${funcionario.idade}"></td>
 		<td><a th:href="@{/editarfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Editar</a></td>
 		<td><a th:href="@{/excluirfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Excluir</a></td>
 	</tr>
