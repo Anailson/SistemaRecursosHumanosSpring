@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Cadastro de Departamentos</title>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
 <h2>Departamento cadastro</h2>
+
+
+<form action="salvardepartamento" method="post">
+	<label>Nome Departamento</label>
+	<input name="nomedepartamento">
+	
+	<input type="submit" value="salvar">
+
+</form>
+
+<a href="/listadepartamentos">Lista Departamento</a>
+
+<table>
+	<tr th:each = "departamento :${departamentos}">
+		<td th:text = "${departamento.id}"></td>
+		<td th:text = "${departamento.nomedepartamento}"></td>
+	
+	</tr>
+</table>
+
+
+
+
 </body>
 </html>
