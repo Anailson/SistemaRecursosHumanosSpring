@@ -38,7 +38,8 @@ color:white;
 
 <body>
 
-<h2> DADOS DO FUNCIONÁRIO</h2>
+<fieldset>	
+	<legend>Cadastro de funcionários</legend>
 
 
 <div class="row"> <!-- DIV ROM PRINCIPAL -->
@@ -180,11 +181,13 @@ color:white;
    
 </div>
 	
-	
 
 </form>
 </div><!-- DIV ROM PRINCIPAL -->
+</fieldset>	
 
+<fieldset>
+  <legend>Pesquisa:</legend>
 <form action="pesquisafuncionario" method="post">
 	<label>Pesquisa por Nome:</label>
 	<input name="nomepesquisa">
@@ -192,8 +195,11 @@ color:white;
 	<a class="btn waves-effect waves-light btn" href="/listafuncionarios">Lista de Funcionáros</a>
 
 </form>
+</fieldset>
 
 
+<fieldset>
+	<legend>Funcionários</legend>
 
 <table class="striped">  
 
@@ -217,7 +223,8 @@ color:white;
 		<td><a th:href="@{/excluirfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Excluir</a></td>
 	</tr>
 </table>
-
+	
+</fieldset>
 
 <script type="text/javascript">
  
