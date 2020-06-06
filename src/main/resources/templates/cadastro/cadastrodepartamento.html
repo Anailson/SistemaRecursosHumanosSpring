@@ -7,11 +7,25 @@
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- COLOCANDO O STYLE PARA APLICAR NA CLASSE STRIPED -->
+<style type="text/css">
+	table.striped>tbody>tr:nth-child(odd){
+	 background-color:#f0f4c3;
+	}
+	
+form input[type=submit]{  /*PEGAR TODOS OS INPUT E COLOCA A COR BRANCO*/
+color:white;
+}	
+</style>
 <title>Cadastro de Departamentos</title>
 </head>
 <body>
-<h2>Departamento cadastro</h2>
+ <a href="cadastrofuncionario" class="btn waves-effect waves-light">Funcionário</a>
 
+<fieldset>	
+	<legend>Departamentos</legend>
+	
 <form action="salvardepartamento" method="post" th:object="${departamentosobj}" >
 	
 	<labeL>ID</labeL>
@@ -25,13 +39,28 @@
 
 </form>
 
+</fieldset>
+
 <br/>
 <br/>
 <a href="/listadepartamentos" class="btn waves-effect waves-light">Lista Departamentos</a>
 <br/>
 <br/>
 
-<table>
+
+
+<fieldset>
+	<legend>DP</legend>
+<table class="striped">
+
+	<thead>
+	  <tr>
+		  <th>ID</th>
+		  <th>Departamento</th>
+		  <th>Editar</th>
+		  <th>Excluir</th>
+	  </tr>	
+	</thead>
 	<tr th:each = "departamento :${departamentos}">
 		<td th:text = "${departamento.id}"></td>
 		<td th:text = "${departamento.nomedepartamento}"></td>
@@ -40,6 +69,7 @@
 	
 	</tr>
 </table>
+</fieldset>
 
 
 
