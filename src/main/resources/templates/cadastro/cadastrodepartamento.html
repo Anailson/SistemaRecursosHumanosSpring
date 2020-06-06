@@ -12,10 +12,15 @@
 <body>
 <h2>Departamento cadastro</h2>
 
-<form action="salvardepartamento" method="post" >
+<form action="salvardepartamento" method="post" th:object="${departamentosobj}" >
+	
+	<labeL>ID</labeL>
+	<input name="id" th:field="*{id}" readonly="readonly">
 	
 	<label>Nome Departamento:</label>
-	<input name="nomedepartamento">
+	<input name="nomedepartamento" th:field="*{nomedepartamento}">
+	
+	
 	<input class="waves-effect waves-light btn" type="submit" value="salvar">
 
 </form>
@@ -30,6 +35,7 @@
 	<tr th:each = "departamento :${departamentos}">
 		<td th:text = "${departamento.id}"></td>
 		<td th:text = "${departamento.nomedepartamento}"></td>
+		<td><a th:href="@{/editardepartamento/{iddepartamento}(iddepartamento=${departamento.id})}">Editar</a></td>
 	
 	</tr>
 </table>
