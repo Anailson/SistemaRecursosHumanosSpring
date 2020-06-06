@@ -72,7 +72,17 @@ public class DepartamentoController {
 	}
 	
 	/*--------------EXCLUIR-------------------*/
-	
+	@GetMapping("/removerdepartamento/{iddepartamento}")
+	public ModelAndView excluir(@PathVariable("iddepartamento") Long iddepartamento) {
+		
+	    departamentoRepository.deleteById(iddepartamento);
+	    
+		ModelAndView modelAndView = new ModelAndView("cadastro/cadastrodepartamento");
+		modelAndView.addObject("departamentos", departamentoRepository.findAll());
+		modelAndView.addObject("departamentosobj", new Departamento());
+				
+		return modelAndView;
+	}
 	
 }
 

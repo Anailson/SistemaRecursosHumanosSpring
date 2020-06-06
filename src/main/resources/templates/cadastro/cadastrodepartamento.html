@@ -36,6 +36,7 @@
 		<td th:text = "${departamento.id}"></td>
 		<td th:text = "${departamento.nomedepartamento}"></td>
 		<td><a th:href="@{/editardepartamento/{iddepartamento}(iddepartamento=${departamento.id})}">Editar</a></td>
+		<td><a th:href="@{/removerdepartamento/{iddepartamento}(iddepartamento=${departamento.id})}">Excluir</a></td>
 	
 	</tr>
 </table>
