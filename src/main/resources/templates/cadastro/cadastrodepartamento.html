@@ -21,7 +21,9 @@ color:white;
 <title>Cadastro de Departamentos</title>
 </head>
 <body>
- <a href="cadastrofuncionario" class="btn waves-effect waves-light">Funcionário</a>
+ <a href="cadastrofuncionario" class="btn waves-effect waves-light">Cadastro Funcionário</a>
+<br/>
+<br/>
 
 <fieldset>	
 	<legend>Departamentos</legend>
@@ -43,7 +45,16 @@ color:white;
 
 <br/>
 <br/>
-<a href="/listadepartamentos" class="btn waves-effect waves-light">Lista Departamentos</a>
+<fieldset>
+  <legend>Pesquisa por tipo de departamento</legend>
+	
+	<form action="pesquisadepartamento" method="post">
+		<input name="nomepesquisa">
+		<input class="btn waves-effect waves-light" type="submit" value="Buscar">
+		<a href="/listadepartamentos" class="btn waves-effect waves-light">Lista Departamentos</a>
+	</form>
+</fieldset>
+
 <br/>
 <br/>
 
