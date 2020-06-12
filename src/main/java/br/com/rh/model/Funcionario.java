@@ -2,6 +2,7 @@ package br.com.rh.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -70,8 +72,11 @@ public class Funcionario implements Serializable {
 	
 	private String ibge;
 	
+		
+	@OneToMany(mappedBy = "funcionario")
+	private List<Contrato> contrato;
 	
-	
+
 	
 	
 	public String getCep() {
@@ -225,6 +230,14 @@ public class Funcionario implements Serializable {
 
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
+	}
+
+	public List<Contrato> getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(List<Contrato> contrato) {
+		this.contrato = contrato;
 	}
 
 	

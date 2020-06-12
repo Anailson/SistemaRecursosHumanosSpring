@@ -1,11 +1,13 @@
 package br.com.rh.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cargo implements Serializable{
@@ -22,6 +24,9 @@ public class Cargo implements Serializable{
 	private int valorsalario;
 	
 	private int valorrefeicao;
+	
+	@OneToMany(mappedBy = "cargo")
+	private List<Contrato> contrato;
 
 	public Long getId() {
 		return id;
@@ -53,6 +58,14 @@ public class Cargo implements Serializable{
 
 	public void setValorrefeicao(int valorrefeicao) {
 		this.valorrefeicao = valorrefeicao;
+	}
+
+	public List<Contrato> getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(List<Contrato> contrato) {
+		this.contrato = contrato;
 	}
 
 	

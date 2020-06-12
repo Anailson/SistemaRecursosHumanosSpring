@@ -1,11 +1,13 @@
 package br.com.rh.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Departamento implements Serializable{
@@ -18,6 +20,10 @@ public class Departamento implements Serializable{
 	private Long id;
 	
 	private String nomedepartamento;
+	
+	@OneToMany(mappedBy = "departamento")
+	private List<Contrato> contrato;
+	
 
 	public Long getId() {
 		return id;
@@ -33,6 +39,14 @@ public class Departamento implements Serializable{
 
 	public void setNomedepartamento(String nomedepartamento) {
 		this.nomedepartamento = nomedepartamento;
+	}
+
+	public List<Contrato> getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(List<Contrato> contrato) {
+		this.contrato = contrato;
 	}
 	
 	
