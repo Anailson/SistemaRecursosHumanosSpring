@@ -60,7 +60,11 @@ color:white;
 
 <fieldset>
 	<legend>Listar</legend>
-<a href="/listacargos" class="waves-effect waves-light btn">Lista de Cargos</a>
+	<form action="pesquisacargo" method="post">
+		<input name="nomepesquisa">
+		<input class="btn waves-effect waves-light" type="submit" value="Buscar">
+		<a href="/listacargos" class="btn waves-effect waves-light">Lista de Cargos</a>
+	</form>
 </fieldset>
 
 <br/>
