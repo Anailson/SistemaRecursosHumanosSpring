@@ -76,4 +76,18 @@ public class CargoController {
 	
 	
 
+	/*--------------EXCLUIR-------------------*/
+	@GetMapping("/removercargo/{idcargo}")
+	public ModelAndView excluir(@PathVariable("idcargo") Long idcargo) {
+		
+	    cargoRepository.deleteById(idcargo);
+	    
+		ModelAndView modelAndView = new ModelAndView("cadastro/cadastrocargo");
+		modelAndView.addObject("cargos", cargoRepository.findAll());
+		modelAndView.addObject("cargosobj", new Cargo());
+				
+		return modelAndView;
+	}	
+	
+
 }
