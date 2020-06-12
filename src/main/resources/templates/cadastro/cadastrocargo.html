@@ -31,21 +31,21 @@ color:white;
 
 <fieldset>
 	<legend>Cargo</legend>
-		<form action="salvarcargo" method="post"  >
+		<form action="salvarcargo" method="post"  th:object="${cargosobj}">
 	
-			<label>ID:</label>
-			<input name="id" >
+			<labeL>ID</labeL>
+			<input name="id" th:field="*{id}" readonly="readonly">
 			
 			<label>Nome cargo:</label>
-			<input name="nomeCargo" >
+			<input name="nomecargo" th:field="*{nomecargo}" >
 			
 			
-			<h3>Beneficios</h3>
+			<h6>Beneficios</h6>
 			<label>Salário R$:</label>
-			<input name="ValorSalario" >
+			<input name="valorsalario" th:field="*{valorsalario}" >
 			
 			<label>VR Refeição R$:</label>
-			<input name="ValorRefeicao" >
+			<input name="valorrefeicao" th:field="*{valorrefeicao}" >
 			
 			
 			<input class="waves-effect waves-light btn" type="submit" value="salvar">
@@ -88,9 +88,9 @@ color:white;
 
 	<tr th:each = "cargo :${cargos}">
 		<td th:text = "${cargo.id}"></td>
-		<td th:text = "${cargo.nomeCargo}"></td>
-		<td th:text = "${cargo.ValorSalario}"></td>
-		<td th:text = "${cargo.ValorRefeicao}"></td>
+		<td th:text = "${cargo.nomecargo}"></td>
+		<td th:text = "${cargo.valorsalario}"></td>
+		<td th:text = "${cargo.valorrefeicao}"></td>
 		<td><a th:href="@{/editarcargo/{idcargo}(idcargo=${cargo.id})}">Editar</a></td>
 		<td><a th:href="@{/removercargo/{idcargo}(idcargo=${cargo.id})}">Excluir</a></td>
 	

@@ -17,11 +17,11 @@ public class Cargo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String nomeCargo;
+	private String nomecargo;
 	
-	private int ValorSalario;
+	private int valorsalario;
 	
-	private int ValorRefeicao;
+	private int valorrefeicao;
 
 	public Long getId() {
 		return id;
@@ -31,32 +31,30 @@ public class Cargo implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeCargo() {
-		return nomeCargo;
+	public String getNomecargo() {
+		return nomecargo;
 	}
 
-	public void setNomeCargo(String nomeCargo) {
-		this.nomeCargo = nomeCargo;
+	public void setNomecargo(String nomecargo) {
+		this.nomecargo = nomecargo;
 	}
 
-	public int getValorSalario() {
-		return ValorSalario;
+	public int getValorsalario() {
+		return valorsalario;
 	}
 
-	public void setValorSalario(int valorSalario) {
-		ValorSalario = valorSalario;
+	public void setValorsalario(int valorsalario) {
+		this.valorsalario = valorsalario;
 	}
 
-	public int getValorRefeicao() {
-		return ValorRefeicao;
+	public int getValorrefeicao() {
+		return valorrefeicao;
 	}
 
-	public void setValorRefeicao(int valorRefeicao) {
-		ValorRefeicao = valorRefeicao;
+	public void setValorrefeicao(int valorrefeicao) {
+		this.valorrefeicao = valorrefeicao;
 	}
 
 	
 	
-	
-
 }
