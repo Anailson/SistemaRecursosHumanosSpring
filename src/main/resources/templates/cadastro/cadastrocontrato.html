@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+<!-- DOis imports para utiliza em DATE CALENDARIO MATERIALIZE-->
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
+	type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
+	rel="stylesheet" type="text/css" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- Adicionando JQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+
+
+
+<!-- COLOCANDO O STYLE PARA APLICAR NA CLASSE STRIPED -->
+<style type="text/css">
+table.striped>tbody>tr:nth-child(odd) {
+	background-color: #f0f4c3;
+}
+
+form input[type=submit] { /*PEGAR TODOS OS INPUT E COLOCA A COR BRANCO*/
+	color: white;
+}
+</style>
+
+<title>Cadastro Contrato</title>
+</head>
+<body>
+
+
+<h2>Teste Contrato</h2>
+
+
+<form action="salvarcontrato" method="post">
+	<label>Admissão:</label>
+	<input name="dataadmissao" type="date">
+	
+	<label>Demissão:</label>
+	<input name="datademissao" type="date">
+
+	<input type="submit" value="salvar">
+
+</form>
+
+
+	
+
+
+
+<!-- Calendário -->
+<script type="text/javascript">
+ 
+$(document).ready(function() {
+	
+	//Colocando no JS codigo para executa o calendar
+	$('#dataNascimento').datepicker({
+				showOthermonths:true,
+				format: 'yyyy-mm-dd'
+				
+				
+	});
+}
+
+</script>
+
+
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+</body>
+</html>

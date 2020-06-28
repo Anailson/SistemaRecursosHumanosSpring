@@ -25,7 +25,7 @@ public class Contrato implements Serializable {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date datadmissao;
+	private Date dataadmissao;
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -42,7 +42,6 @@ public class Contrato implements Serializable {
 	@ManyToOne
 	@org.hibernate.annotations.ForeignKey(name = "cargo_id")
 	private Cargo cargo;
-	
 
 	public Long getId() {
 		return id;
@@ -52,12 +51,12 @@ public class Contrato implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDatadmissao() {
-		return datadmissao;
+	public Date getDataadmissao() {
+		return dataadmissao;
 	}
 
-	public void setDatadmissao(Date datadmissao) {
-		this.datadmissao = datadmissao;
+	public void setDataadmissao(Date dataadmissao) {
+		this.dataadmissao = dataadmissao;
 	}
 
 	public Date getDatademissao() {
@@ -91,6 +90,8 @@ public class Contrato implements Serializable {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+	
+
 	
 	
 	
