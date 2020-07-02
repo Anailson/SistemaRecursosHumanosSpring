@@ -187,8 +187,10 @@ color:white;
 
 <div class="row">
    <div class="input-fiel col s6">
+   			
+		
 		<input class="btn waves-effect waves-light btn" type="submit" value="salvar">
-  		
+		  		
   		<button class="btn waves-effect waves-light btn" onclick="document.getElementById('formfuncionario').reset();">Limpar</button>
   
    </div>
@@ -233,8 +235,9 @@ color:white;
 		<td th:text = "${funcionario.nome}"></td>
 		<td th:text = "${funcionario.sobrenome}"></td>
 		<td th:text = "${funcionario.idade}"></td>
-		<td><a th:href="@{/editarfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Editar</a></td>
-		<td><a th:href="@{/excluirfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">Excluir</a></td>
+		<td><i class="material-icons"><a th:href="@{/editarfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">edit</a></i></td>
+		<td><i class="material-icons"><a th:href="@{/excluirfuncionario/{idfuncionario}(idfuncionario=${funcionario.id})}">delete_sweep</a></i>
+		</td>
 	</tr>
 </table>
 	
