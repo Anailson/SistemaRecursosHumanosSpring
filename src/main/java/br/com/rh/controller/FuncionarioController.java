@@ -1,5 +1,7 @@
 package br.com.rh.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -102,7 +104,10 @@ public class FuncionarioController {
 	}
 	/*------------------METODO DE CONSULTA POR NOME-------------------------*/
 	@PostMapping("**/pesquisafuncionario")
-	public ModelAndView pesquisa(@RequestParam("nomepesquisa")String nomepesquisa) {
+	public ModelAndView pesquisa(@RequestParam("nomepesquisa")String nomepesquisa,
+			@RequestParam("pesquisaescolaridade")String pesquisaescolaridade) {
+		
+		
 		
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofuncionario");
 		modelAndView.addObject("funcionarios", funcionarioRepository.findFuncionarioByName(nomepesquisa));
@@ -114,9 +119,38 @@ public class FuncionarioController {
 	
 	/*------------------METODO PARA O PDF RELATORIOO-------------------------*/
 	@GetMapping("**/pesquisafuncionario")
-	public void imprimePDF(@RequestParam("nomepesquisa")String nomepesquisa, HttpServletRequest request, HttpServletResponse response) {
+	public void imprimePDF(@RequestParam("nomepesquisa")String nomepesquisa, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		///System.out.println("teste");
+		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+		
+		if (nomepesquisa != null && !nomepesquisa.isEmpty()) {  //BUSCA O NOME
+			funcionarios = funcionarioRepository.findFuncionarioByName(nomepesquisa);
+			
+		}else { //BUSCA TODOS
+			Iterable<Funcionario> iterator = funcionarioRepository.findAll();
+			for (Funcionario funcionario : iterator) {
+				funcionarios.add(funcionario);
+			}
+		}
+		
+		/*CHAMAR O SERVIÇO QUE FAZ A GERAÇÃO DO RELATORIO*/
+		byte[] pdf = reportUtil.gerarRelatorio(funcionarios, "funcionario", request.getServletContext());
+		
+		/*TAMANHO DA RESPOSTA*/
+		
+		response.setContentLength(pdf.length);
+		
+		/*DEFINIR NA RESPOSTA O TIPO DE ARQUIVO*/
+		response.setContentType("application/octet-stream");
+		
+		/*DEFINIR O CABEÇALHO DA RESPOSTA*/
+		String headerKey = "Content-Disposition";
+		String headerValue = String.format("attachment; filename=\"%\"", "relatorio.pdf");
+		response.setHeader(headerKey, headerValue);
+		
+		/*FINALIZA A RESPOSTA PARA O NAVEGADOR*/
+		response.getOutputStream().write(pdf);
+		
 	}
 	
 	

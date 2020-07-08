@@ -202,15 +202,30 @@ color:white;
 </fieldset>	
 
 <fieldset>
-  <legend>Pesquisa:</legend>
-<form action="pesquisafuncionario" method="post" id="pesquisafuncionario">
-	<label>Pesquisa por Nome:</label>
-	<input name="nomepesquisa">
-	<input class="btn waves-effect waves-light btn" type="submit" value="Buscar">
-	<a class="btn waves-effect waves-light btn" href="/listafuncionarios">Lista de Funcionáros</a>
-	<input class="btn waves-effect waves-light btn" type="submit" value="PDF" onclick="document.getElementByID('pesquisafuncionario').method = 'get'">
-
-</form>
+  <legend>Campo de pesquisa:</legend>
+<div class="row">
+		<form action="pesquisafuncionario" method="post" id="pesquisafuncionario" class="col s12">
+	<div class="row">
+	<div class="input-field col s6">
+		<label for="nomepsquisa" class="active">Pesquisa por Nome:</label>
+		<input name="nomepesquisa" id="nomepesquisa" class="validae" >
+	</div>
+	
+	<div class="input-field col s6">
+	 	<label for="pesquisaescolaridade" class="active">Pesquisa Escolaridade:</label>
+	 	<select class="browser-default" name="pesquisaescolaridade" id="escolaridade">
+		  <option th:each = "e : ${T(br.com.rh.model.Escolaridade).values()}" th:value="${e}" th:text="${e.nome}" />
+		</select>
+	</div>
+	
+	<div class="input-field col s12">
+		<input class="btn waves-effect waves-light btn" type="submit" value="Buscar">
+		<a class="btn waves-effect waves-light btn" href="/listafuncionarios">Lista de Funcionáros</a>
+		<input class="btn waves-effect waves-light btn" type="submit" value="PDF" onclick="document.getElementById('pesquisafuncionario').method = 'get'">
+	</div>
+   </div>
+       </form>
+</div>
 </fieldset>
 
 
