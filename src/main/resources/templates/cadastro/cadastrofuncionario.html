@@ -212,10 +212,12 @@ color:white;
 	</div>
 	
 	<div class="input-field col s6">
-	 	<label for="pesquisaescolaridade" class="active">Pesquisa Escolaridade:</label>
-	 	<select class="browser-default" name="pesquisaescolaridade" id="escolaridade">
-		  <option th:each = "e : ${T(br.com.rh.model.Escolaridade).values()}" th:value="${e}" th:text="${e.nome}" />
-		</select>
+	 	<label for="pesqsexo" class="active">Pesquisa Sexo:</label>
+		<select class="browser-default" name="pesqsexo" id="pesqsexo">
+			<option value="" >--[Todos]--</option>
+			<option value="MASCULINO" th:text="Masculino"/>  <!-- value enviado no lado do servidor -->
+			<option value="FEMININO" th:text="Feminino"/> 
+		</select>	
 	</div>
 	
 	<div class="input-field col s12">

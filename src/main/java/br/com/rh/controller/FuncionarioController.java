@@ -102,15 +102,23 @@ public class FuncionarioController {
 		
 		
 	}
-	/*------------------METODO DE CONSULTA POR NOME-------------------------*/
+	/*------------------METODO DE CONSULTA POR NOME E SEXO-------------------------*/
 	@PostMapping("**/pesquisafuncionario")
 	public ModelAndView pesquisa(@RequestParam("nomepesquisa")String nomepesquisa,
-			@RequestParam("pesquisaescolaridade")String pesquisaescolaridade) {
+			@RequestParam("pesqsexo")String pesqsexo) {
 		
+		/*IMPLEMENTAÇÃO DA CONSULTA DINAMICA NOME E SEXO*/
+		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 		
-		
+		if (pesqsexo != null && !pesqsexo.isEmpty()) {
+			 funcionarios = funcionarioRepository.findFuncionarioByNameSexo(nomepesquisa, pesqsexo);
+			 
+		}else { //CASO NÃO TENHA SEXO
+		   funcionarios = funcionarioRepository.findFuncionarioByName(nomepesquisa)	;//RETORNA APENAS O NOME DA PESSOA
+		}
+			
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofuncionario");
-		modelAndView.addObject("funcionarios", funcionarioRepository.findFuncionarioByName(nomepesquisa));
+		modelAndView.addObject("funcionarios", funcionarios);
 		modelAndView.addObject("funcionarioobj", new Funcionario());
 		
 		return modelAndView;

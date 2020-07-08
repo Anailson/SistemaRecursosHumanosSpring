@@ -34,8 +34,8 @@ public class Funcionario implements Serializable {
 	
 	private int idade;
 	
-	private String sexo;
-	
+	private String sexo; //FEMININO OU MASCULINO
+	 
 	
 	private String telefone;
 	
@@ -76,8 +76,7 @@ public class Funcionario implements Serializable {
 	@OneToMany(mappedBy = "funcionario")
 	private List<Contrato> contrato;
 	
-
-	
+   
 	
 	public String getCep() {
 		return cep;
