@@ -33,7 +33,7 @@ color:white;
 
 
 
-<title>Cadastro Colaboradores</title>
+<title>Cadastro Funcionários</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@ color:white;
 
 
 <fieldset>	
-	<legend>Cadastro de funcionários</legend>
+	<legend >Cadastro de funcionários</legend>
 
 
 <div class="row"> <!-- DIV ROM PRINCIPAL -->
@@ -188,9 +188,9 @@ color:white;
 <div class="row">
    <div class="input-fiel col s6">
    			
-		
 		<input class="btn waves-effect waves-light btn" type="submit" value="salvar">
 		<button class="btn waves-effect waves-light btn" onclick="document.getElementById('formfuncionario').reset();">Limpar</button>
+		
   
    </div>
    
@@ -203,11 +203,12 @@ color:white;
 
 <fieldset>
   <legend>Pesquisa:</legend>
-<form action="pesquisafuncionario" method="post">
+<form action="pesquisafuncionario" method="post" id="pesquisafuncionario">
 	<label>Pesquisa por Nome:</label>
 	<input name="nomepesquisa">
 	<input class="btn waves-effect waves-light btn" type="submit" value="Buscar">
 	<a class="btn waves-effect waves-light btn" href="/listafuncionarios">Lista de Funcionáros</a>
+	<input class="btn waves-effect waves-light btn" type="submit" value="PDF" onclick="document.getElementByID('pesquisafuncionario').method = 'get'">
 
 </form>
 </fieldset>

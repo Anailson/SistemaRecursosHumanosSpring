@@ -2,6 +2,9 @@ package br.com.rh.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,8 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 
+	@Autowired
+	private ReportUtil reportUtil;  //DEPENDENCIA DO RELATORIO
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastrofuncionario")
 	public ModelAndView inicio() {
@@ -104,6 +109,14 @@ public class FuncionarioController {
 		modelAndView.addObject("funcionarioobj", new Funcionario());
 		
 		return modelAndView;
+	}
+	
+	
+	/*------------------METODO PARA O PDF RELATORIOO-------------------------*/
+	@GetMapping("**/pesquisafuncionario")
+	public void imprimePDF(@RequestParam("nomepesquisa")String nomepesquisa, HttpServletRequest request, HttpServletResponse response) {
+		
+		///System.out.println("teste");
 	}
 	
 	
