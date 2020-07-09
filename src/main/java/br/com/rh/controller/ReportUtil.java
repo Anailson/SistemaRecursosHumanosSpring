@@ -30,7 +30,7 @@ public class ReportUtil implements Serializable{
 		JRBeanCollectionDataSource jrdcds = new JRBeanCollectionDataSource(listDados);
 				
 		/*CARREGA O CAMINHO DO ARQUIVO JASPER COMPILADO*/
-		String caminhoJasper = servletContext.getRealPath("relatorio")
+		String caminhoJasper = servletContext.getRealPath("relatorios")
 				+ File.separator + relatorio + ".jasper";
 		
 		/*CARREGA O ARQUIBO JASPER PASSANDO OS DADOS*/

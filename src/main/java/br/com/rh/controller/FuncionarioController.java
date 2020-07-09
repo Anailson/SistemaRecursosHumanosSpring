@@ -127,25 +127,31 @@ public class FuncionarioController {
 	
 	/*------------------METODO PARA O PDF RELATORIOO-------------------------*/
 	@GetMapping("**/pesquisafuncionario")
-	public void imprimePDF(@RequestParam("nomepesquisa")String nomepesquisa, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void imprimePDF(@RequestParam("nomepesquisa")String nomepesquisa, 
+			@RequestParam("pesqsexo")String pesqsexo, 	HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 		
-		if (nomepesquisa != null && !nomepesquisa.isEmpty()) {  //BUSCA O NOME
-			funcionarios = funcionarioRepository.findFuncionarioByName(nomepesquisa);
+		if (pesqsexo != null && !pesqsexo.isEmpty() && nomepesquisa !=null &&nomepesquisa.isEmpty()) {  //BUSCA O NOME E SEXO
+			funcionarios = funcionarioRepository.findFuncionarioByNameSexo(nomepesquisa, pesqsexo);
 			
-		}else { //BUSCA TODOS
+		}else if(nomepesquisa !=null &&nomepesquisa.isEmpty()) {
+			funcionarios = funcionarioRepository.findFuncionarioByName(nomepesquisa);
+		}else { //BUSCA TODOS - caso nao informe nenhum dados
 			Iterable<Funcionario> iterator = funcionarioRepository.findAll();
 			for (Funcionario funcionario : iterator) {
 				funcionarios.add(funcionario);
 			}
 		}
 		
-		/*CHAMAR O SERVIÇO QUE FAZ A GERAÇÃO DO RELATORIO*/
+		/*CHAMA O SERVIÇO DE GERAÇÃO DO RELATORIO*/
+		
+	
 		byte[] pdf = reportUtil.gerarRelatorio(funcionarios, "funcionario", request.getServletContext());
 		
-		/*TAMANHO DA RESPOSTA*/
+		/*---------------REGRA PARA O DOWLOAD INICIO*/
 		
+		 /*TAMANHO DA RESPOSTA*/
 		response.setContentLength(pdf.length);
 		
 		/*DEFINIR NA RESPOSTA O TIPO DE ARQUIVO*/
@@ -153,14 +159,15 @@ public class FuncionarioController {
 		
 		/*DEFINIR O CABEÇALHO DA RESPOSTA*/
 		String headerKey = "Content-Disposition";
-		String headerValue = String.format("attachment; filename=\"%\"", "relatorio.pdf");
+		String headerValue = String.format("attachment; filename=\"%s\"", "relatorio.pdf");
 		response.setHeader(headerKey, headerValue);
 		
 		/*FINALIZA A RESPOSTA PARA O NAVEGADOR*/
 		response.getOutputStream().write(pdf);
-		
+			
+		/*---------------REGRA PARA O DOWLOAD FIM----*/		
+			
+	
 	}
-	
-	
 	
 }
